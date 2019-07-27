@@ -11,14 +11,18 @@
     "start:dev": "DEBUG=* nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
     "test": "cross-env NODE_ENV=test jest --colors --watch",
-    "pretest":"cross-env NODE_ENV=test && npm run migrate:reset"
+    "pretest": "cross-env NODE_ENV=test && npm run migrate:reset"
   },
   "jest": {
     "testEnvironment": "node",
-    "coveragePathIgnorePatterns": ["/node_modules/"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
     "collectCoverage": true,
     "verbose": true,
-    "collectCoverageFrom": ["src/**/*.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -32,7 +36,6 @@
     "express": "^4.17.1",
     "express-error-bouncer": "^1.0.1",
     "express-validator": "^6.1.1",
-    "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
@@ -43,6 +46,8 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
-    "nodemon": "^1.19.1"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
