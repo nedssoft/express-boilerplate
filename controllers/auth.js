@@ -35,22 +35,23 @@ export async function login(req, res, next) {
   try {
     const { email, password } = req.body;
     const user = await models.User.findOne({ where: { email } });
-    if (user) {
-      const isValidPassword = bcrypt.compareSync(password, user.password);
-      if (isValidPassword) {
-        const token = await generateToken({ __uuid: user.id });
-        const { password: pass, ...userData } = user.get();
-        return formatResponse(
-          res,
-          {
-            user: userData,
-            token,
-          },
-          200,
-        );
-      }
+    if (!user) {
       throw new ErrorHandler(401, 'Invalid credentials');
     }
+    const isValidPassword = bcrypt.compareSync(password, user.password);
+    if (isValidPassword) {
+      const token = await generateToken({ __uuid: user.id });
+      const { password: pass, ...userData } = user.get();
+      return formatResponse(
+        res,
+        {
+          user: userData,
+          token,
+        },
+        200,
+      );
+    }
+    throw new ErrorHandler(401, 'Invalid credentials');
   } catch (error) {
     next(error);
   }

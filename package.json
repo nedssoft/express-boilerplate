@@ -10,25 +10,29 @@
     "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "start:dev": "DEBUG=* nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
-    "test": "cross-env NODE_ENV=test jest --colors --watch",
-    "pretest": "cross-env NODE_ENV=test && npm run migrate:reset"
+    "test": "export NODE_ENV=test && jest --detectOpenHandles --forceExit --coverage",
+    "pretest": "export NODE_ENV=test && npm run migrate:reset"
   },
   "jest": {
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "/helpers/*",
+      "/models/*"
     ],
     "collectCoverage": true,
     "verbose": true,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "testTimeout": 10000
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.4.5",
+    "@babel/runtime": "^7.5.5",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -42,6 +46,8 @@
     "sequelize": "^5.10.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",

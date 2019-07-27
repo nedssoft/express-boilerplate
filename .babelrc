@@ -5,6 +5,10 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-proposal-throw-expressions"
+    "@babel/plugin-proposal-throw-expressions",
+    "@babel/syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    [ "@babel/plugin-proposal-class-properties", { "loose": true } ],
+    "transform-async-to-generator"
   ]
 }
