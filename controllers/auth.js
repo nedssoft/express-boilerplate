@@ -24,7 +24,8 @@ export async function register(req, res, next) {
     if (!created && user) {
       throw new ErrorHandler(409, 'User with the email address already exists');
     }
-    return formatResponse(res, { message: 'success', user }, 201);
+    const { password: pass, ...userData } = user.get(); // remove password from the returned data
+    return formatResponse(res, { message: 'success', user: userData }, 201);
   } catch (error) {
     next(error);
   }
@@ -38,7 +39,7 @@ export async function login(req, res, next) {
       const isValidPassword = bcrypt.compareSync(password, user.password);
       if (isValidPassword) {
         const token = await generateToken({ __uuid: user.id });
-        const { password: pass, ...userData } = user;
+        const { password: pass, ...userData } = user.get();
         return formatResponse(
           res,
           {
