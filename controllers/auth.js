@@ -53,6 +53,7 @@ export async function login(req, res, next) {
     }
     throw new ErrorHandler(401, 'Invalid credentials');
   } catch (error) {
+    console.log(error);
     next(error);
   }
 }

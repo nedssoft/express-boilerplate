@@ -61,7 +61,7 @@ describe('Login Endpoint', () => {
       expect(body).toHaveProperty('user');
       expect(body).toHaveProperty('token');
     } catch (error) {
-      console.log(error);
+      return null;
     }
   });
 });
