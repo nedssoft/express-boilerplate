@@ -11,7 +11,8 @@
     "start:dev": "DEBUG=* nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
     "test": "export NODE_ENV=test && jest --detectOpenHandles --forceExit --coverage",
-    "pretest": "export NODE_ENV=test && npm run migrate:reset"
+    "pretest": "export NODE_ENV=test && npm run migrate:reset",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "jest": {
     "testEnvironment": "node",
@@ -48,6 +49,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "coveralls": "^3.0.5",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
