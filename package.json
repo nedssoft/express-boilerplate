@@ -10,7 +10,7 @@
     "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "start:dev": "DEBUG=* nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
-    "test": "export NODE_ENV=test && jest --detectOpenHandles --forceExit --coverage",
+    "test": "export NODE_ENV=test && jest --detectOpenHandles --testTimeout=10000 --forceExit ",
     "pretest": "export NODE_ENV=test && npm run migrate:reset",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
@@ -22,8 +22,7 @@
       "/models/*"
     ],
     "collectCoverage": true,
-    "verbose": true,
-    "testTimeout": 10000
+    "verbose": true
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -44,7 +43,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.10.3"
+    "sequelize": "^5.10.3",
+    "sequelize-cli": "^5.5.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
