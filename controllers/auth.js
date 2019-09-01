@@ -1,5 +1,4 @@
 import { ErrorHandler } from 'express-error-bouncer';
-import bcrypt from 'bcrypt';
 import formatResponse from '../helpers';
 import { generateToken } from '../helpers/auth';
 
@@ -10,14 +9,13 @@ export async function register(req, res, next) {
     const {
       email, password, firstName, lastName,
     } = req.body;
-    const hashedPassword = await bcrypt.hashSync(password, 15);
     const [user, created] = await models.User.findOrCreate({
       where: { email },
       defaults: {
         firstName,
         lastName,
         email,
-        password: hashedPassword,
+        password,
       },
       attributes: ['id', 'firstName', 'lastName', 'email'],
     });
@@ -38,7 +36,7 @@ export async function login(req, res, next) {
     if (!user) {
       throw new ErrorHandler(401, 'Invalid credentials');
     }
-    const isValidPassword = bcrypt.compareSync(password, user.password);
+    const isValidPassword = await user.validatePassword(password);
     if (isValidPassword) {
       const token = await generateToken({ __uuid: user.id });
       const { password: pass, ...userData } = user.get();

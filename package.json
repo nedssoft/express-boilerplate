@@ -12,7 +12,7 @@
     "start": "babel-node index.js",
     "test": "export NODE_ENV=test && jest --detectOpenHandles --testTimeout=10000 --forceExit",
     "pretest": "export NODE_ENV=test && npm run migrate:reset",
-    "coveralls": "npm run pretest && jest --coverage --detectOpenHandles --testTimeout=10000 && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run pretest && jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "jest": {
     "testEnvironment": "node",
