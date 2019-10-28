@@ -22,8 +22,7 @@ export async function register(req, res, next) {
     if (!created && user) {
       throw new ErrorHandler(409, 'User with the email address already exists');
     }
-    const { password: pass, ...userData } = user.get(); // remove password from the returned data
-    return formatResponse(res, { message: 'success', user: userData }, 201);
+    return formatResponse(res, { message: 'success', user: user.get() }, 201);
   } catch (error) {
     next(error);
   }
@@ -39,11 +38,10 @@ export async function login(req, res, next) {
     const isValidPassword = await user.validatePassword(password);
     if (isValidPassword) {
       const token = await generateToken({ __uuid: user.id });
-      const { password: pass, ...userData } = user.get();
       return formatResponse(
         res,
         {
-          user: userData,
+          user: user.get(),
           token,
         },
         200,
