@@ -1,17 +1,17 @@
 {
   "name": "express-boilerplate",
   "version": "1.0.0",
-  "description": "boilrplate for express applications",
+  "description": "boilerplate for express applications",
   "main": "index.js",
   "author": "Orie Chinedu <oriechinedu@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "migrate": "sequelize db:migrate",
-    "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
-    "start:dev": "DEBUG=* nodemon --exec babel-node index.js",
+    "migrate": "npx sequelize db:migrate",
+    "migrate:reset": "npx sequelize db:migrate:undo:all && npm run migrate",
+    "start:dev": "nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
-    "test": "export NODE_ENV=test && jest --detectOpenHandles --testTimeout=10000 --forceExit",
-    "pretest": "export NODE_ENV=test && npm run migrate:reset",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --testTimeout=10000 --forceExit",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
     "coveralls": "npm run pretest && jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "jest": {
@@ -44,7 +44,8 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.10.3",
-    "sequelize-cli": "^5.5.0"
+    "@sendgrid/mail": "^6.4.0",
+    "mailgen": "^2.0.8"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
