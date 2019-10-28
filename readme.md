@@ -1,7 +1,7 @@
 # Express-boilerplate
 A boilerplate to get an express application up and running in 1 minute.
 
-[![Build Status](https://travis-ci.org/nedssoft/express-boilerplate.svg?branch=develop)](https://travis-ci.org/nedssoft/express-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/nedssoft/express-boilerplate/badge.svg?branch=develop)](https://coveralls.io/github/oriechinedu/express-boilerplate?branch=develop)
+[![Build Status](https://travis-ci.org/nedssoft/express-boilerplate.svg?branch=develop)](https://travis-ci.org/nedssoft/express-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/oriechinedu/express-boilerplate/badge.svg?branch=develop)](https://coveralls.io/github/oriechinedu/express-boilerplate?branch=develop)
 
 
 # Features:
