@@ -22,7 +22,7 @@ export async function register(req, res, next) {
     if (!created && user) {
       throw new ErrorHandler(409, 'User with the email address already exists');
     }
-    return formatResponse(res, { message: 'success', user: user.get() }, 201);
+    return formatResponse(res, { message: 'success', user }, 201);
   } catch (error) {
     next(error);
   }
@@ -41,7 +41,7 @@ export async function login(req, res, next) {
       return formatResponse(
         res,
         {
-          user: user.get(),
+          user,
           token,
         },
         200,

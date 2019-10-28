@@ -8,7 +8,7 @@ import secret from '../config/secret';
  * @param {*} payload
  * @returns
  */
-const generateToken = (payload) => {
+export const generateToken = (payload) => {
   try {
     return jwt.sign(payload, secret, { expiresIn: '24h' });
   } catch (error) {
@@ -16,7 +16,13 @@ const generateToken = (payload) => {
   }
 };
 
-export const decodeToken = (token) => {
+/**
+ *
+ *
+ * @param {string} token
+ * @returns {object} payload
+ */
+const decodeToken = (token) => {
   try {
     return jwt.verify(token, secret);
   } catch (error) {

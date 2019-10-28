@@ -5,7 +5,7 @@ import server from './api/server';
 dotenv.config();
 const debug = dd('App');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7000;
 server.listen(PORT, () => {
   debug(`server live at localhost:${PORT}`);
 });
