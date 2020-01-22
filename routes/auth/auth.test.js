@@ -53,11 +53,11 @@ describe('Login Endpoint', () => {
     expect(statusCode).toEqual(401);
   });
   it('should respond with status code 200 if login succeeds', async () => {
-      const { statusCode, body } = await request(app)
-        .post(`${BASE_URL}/login`)
-        .send({ email: 'test@test.com', password: 'test12' });
-      expect(statusCode).toEqual(200);
-      expect(body).toHaveProperty('user');
-      expect(body).toHaveProperty('token');
+    const { statusCode, body } = await request(app)
+      .post(`${BASE_URL}/login`)
+      .send({ email: 'test@test.com', password: 'test12' });
+    expect(statusCode).toEqual(200);
+    expect(body).toHaveProperty('user');
+    expect(body).toHaveProperty('token');
   });
 });
